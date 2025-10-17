@@ -8,16 +8,23 @@ saludar = function () {
     let mensajeBienvenida = "Bienvenido " + nombre + " " + apellido;
     mostrarTexto("lblResultado", mensajeBienvenida);
     mostrarImagen("idImage", "./imagenes/mininos.gif");
+    mostrarTextoEnCaja("txtNombre", "");
 
 }
 
-mostrarImagen = function(idComponente, rutaImagen){
+mostrarTextoEnCaja = function (idComponente, mensaje) {
+    let componente;
+    componente = document.getElementById(idComponente);
+    componente.value = mensaje;
+}
+
+mostrarImagen = function (idComponente, rutaImagen) {
     let componente;
     componente = document.getElementById(idComponente);
     componente.src = rutaImagen;
 }
 
-mostrarTexto = function(idComponente, mensaje){
+mostrarTexto = function (idComponente, mensaje) {
     let componente;
     componente = document.getElementById(idComponente);
     componente.innerText = mensaje;
