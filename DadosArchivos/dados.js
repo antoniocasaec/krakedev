@@ -1,6 +1,10 @@
 jugar = function (){
     let aleatorio = lanzarDados();
     cambiarTexto("lblNumero",aleatorio);
+    if(aleatorio>3){
+        console.log("Es mayor a 3");
+        console.log("Ganaste");
+    }
 }
 
 lanzarDados = function(){
