@@ -4,6 +4,9 @@ jugar = function (){
     if(aleatorio>3){
         console.log("Es mayor a 3");
         console.log("Ganaste");
+    }else{
+        console.log("Es menor a 3");
+        console.log("Perdiste");
     }
 }
 
