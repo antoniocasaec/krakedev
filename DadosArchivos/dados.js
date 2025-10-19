@@ -1,5 +1,6 @@
 jugar = function (){
-    lanzarDados();
+    let aleatorio = lanzarDados();
+    cambiarTexto("lblNumero",aleatorio);
 }
 
 lanzarDados = function(){
