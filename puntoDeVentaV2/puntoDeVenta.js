@@ -11,22 +11,30 @@ calcularValorTotal = function () {
     let valorIVA;
     let valorTotal;
 
+
+    let existeError = false;
+
     //1. Recuperar el nombre del producto como String
     nombreProducto = recuperarTexto("txtProducto");
     //2. Recuperar el precio como float
     precioProducto = recuperarFloat("txtPrecio");
     //3. Recuperar cantidad como int
     cantidad = recuperarInt("txtCantidad");
-    //4. Recuperar el porcentaje de descuento como int
-    porcentajeDescuento = recuperarInt("txtPorcentajeDescuento");
 
-    //4. Invocar a calcularSubtotal y el retorno guardar en la variable valorSubtotal
-    valorSubtotal = CalcularSubTotal(precioProducto,cantidad);
-    // Tomar en cuenta el orden de como pasa los parametos de la funcion y colocar bien
-    // los parametros cuando invoca la funcion.
-    //5. Mostrar valorSubtotal en el componente lblSubtotal
-    mostrarTexto("lblSubtotal",valorSubtotal);
-    // Utilizar mostrarTexto
+    if (esProductoValido(nombreProducto, "lblErrortxtProducto") & esPrecioValido(precioProducto, "lblErrortxtPrecio") & esCantidadValido(cantidad, "lblErrortxtCantidad")) {
+
+
+
+        //4. Recuperar el porcentaje de descuento como int
+        //porcentajeDescuento = recuperarInt("txtPorcentajeDescuento");
+
+        //4. Invocar a calcularSubtotal y el retorno guardar en la variable valorSubtotal
+        valorSubtotal = CalcularSubTotal(precioProducto, cantidad);
+        // Tomar en cuenta el orden de como pasa los parametos de la funcion y colocar bien
+        // los parametros cuando invoca la funcion.
+        //5. Mostrar valorSubtotal en el componente lblSubtotal
+        mostrarTexto("lblSubtotal", valorSubtotal);
+        // Utilizar mostrarTexto
         /*
         Caso de prueba: 
             - cantidad: 10
@@ -34,23 +42,24 @@ calcularValorTotal = function () {
             Subtotal esperado: 54
         Si el caso de prueba es exitoso, hacer un commit
      */
-    //6. Invocar a calcularValorDescuento y lo que devuelve guardar en la variable valorDescuento
-    valorDescuento = CalcularValorDescuento(valorSubtotal, porcentajeDescuento)
-    //7. Mostrar el resultado en el componente lblDescuento
-    mostrarTexto("lblDescuento",valorDescuento);
-    /*
-        Caso de prueba: 
-            - cantidad: 10 
-            - precioProducto: 5.4  
-            - descuento: 10
-            - Descuento esperado: 5.4
-        Si el caso de prueba es exitoso, hacer un commit
-     */
-    //8. Invocar a calcularIVA y lo que devuelve guardar en la variable valorIVA
-    valorIVA = CalcularIva(valorSubtotal - valorDescuento);
-    // El IVA debe calcularse sobre el valor del subtotal menos el descuento
-    //9. Mostrar el resultado en el componente lblValorIVA
-    mostrarTexto("lblValorIVA",valorIVA);    
+        //6. Invocar a calcularValorDescuento y lo que devuelve guardar en la variable valorDescuento
+        //   valorDescuento = CalcularValorDescuento(valorSubtotal, porcentajeDescuento)
+        valorDescuento = CalcularDescuentoPorVolumen(valorSubtotal, cantidad)
+        //7. Mostrar el resultado en el componente lblDescuento
+        mostrarTexto("lblDescuento", valorDescuento);
+        /*
+            Caso de prueba: 
+                - cantidad: 10 
+                - precioProducto: 5.4  
+                - descuento: 10
+                - Descuento esperado: 5.4
+            Si el caso de prueba es exitoso, hacer un commit
+         */
+        //8. Invocar a calcularIVA y lo que devuelve guardar en la variable valorIVA
+        valorIVA = CalcularIva(valorSubtotal - valorDescuento);
+        // El IVA debe calcularse sobre el valor del subtotal menos el descuento
+        //9. Mostrar el resultado en el componente lblValorIVA
+        mostrarTexto("lblValorIVA", valorIVA);
         /*
             Caso de prueba: 
                 - cantidad: 10 
@@ -66,32 +75,36 @@ calcularValorTotal = function () {
 
             Si el caso de prueba es exitoso, hacer un commit
         */
-    //10. Invocar a calcularTotal y lo que devuelve guardar en la variable valorTotal
-    valorTotal = CalcularTotal(valorSubtotal, valorDescuento, valorIVA)
-    //11. Mostrar el resultado en el componente lblTotal
-    mostrarTexto("lblTotal",valorTotal);    
-    /*
-        Caso de prueba: 
-            - cantidad: 10
-            - precioProducto: 5.4 
-            - descuento: 10
+        //10. Invocar a calcularTotal y lo que devuelve guardar en la variable valorTotal
+        valorTotal = CalcularTotal(valorSubtotal, valorDescuento, valorIVA)
+        //11. Mostrar el resultado en el componente lblTotal
+        mostrarTexto("lblTotal", valorTotal);
+        /*
+            Caso de prueba: 
+                - cantidad: 10
+                - precioProducto: 5.4 
+                - descuento: 10
+    
+                    --valorSubtotal: 5.4
+                    --descuento: 5.4
+                    --IVA: 5.832
+    
+                    Total esperado: 54.432
+    
+                    Si el caso de prueba es exitoso, hacer un commit
+           */
 
-                --valorSubtotal: 5.4
-                --descuento: 5.4
-                --IVA: 5.832
+        //12. Mostrar un resumen en el componente lblResumen, si no existe debe agregarlo
+        //mostrarTexto("lblResumen", "Valor a pagar por " + cantidad + " " + nombreProducto + " con " + valorDescuento + " de descuento: USD " + valorTotal);
+        /*
+            Ejemplo: 
+                Valor a pagar por 20 cerveza corona con 10% de descuento: USD 48.75
+            Si funciona, hacer un commit
+        */
 
-                Total esperado: 54.432
 
-                Si el caso de prueba es exitoso, hacer un commit
-       */
-            
-    //12. Mostrar un resumen en el componente lblResumen, si no existe debe agregarlo
-    mostrarTexto("lblResumen", "Valor a pagar por " + cantidad + " " + nombreProducto + " con " + valorDescuento + " de descuento: USD " + valorTotal);
-    /*
-        Ejemplo: 
-            Valor a pagar por 20 cerveza corona con 10% de descuento: USD 48.75
-        Si funciona, hacer un commit
-    */
+    } 
+    
 
 }
 limpiar = function () {
@@ -101,15 +114,73 @@ limpiar = function () {
         Si funciona, hacer un commit
      */
     mostrarTextoEnCaja("txtProducto", "");
-    mostrarTextoEnCaja("txtPrecio", "0.0");
-    mostrarTextoEnCaja("txtCantidad", "0");
-    mostrarTextoEnCaja("txtPorcentajeDescuento", "0");
+    mostrarTextoEnCaja("txtPrecio", "");
+    mostrarTextoEnCaja("txtCantidad", "");
+    //mostrarTextoEnCaja("txtPorcentajeDescuento", "0");
     mostrarTexto("lblSubtotal", "0.0");
     mostrarTexto("lblDescuento", "0.0");
     mostrarTexto("lblValorIVA", "0.0");
     mostrarTexto("lblTotal", "0.0");
-    mostrarTexto("lblResumen", "")
-
-
+    ///mostrarTexto("lblResumen", "")
 }
+
 /* SI TODO FUNCIONA, HACER UN PUSH */
+
+esProductoValido = function (nota, idComponente) {
+    let v_nota = nota;
+    let cantidad = v_nota.length;
+    let hayErrores = false;
+    if (nota == '') {
+        mostrarTexto(idComponente, "Campo obligatorio");
+        hayErrores = true;
+    }
+
+    if (cantidad > 10) {
+        mostrarTexto(idComponente, "No puede ser mas de 10 caracteres");
+        hayErrores = true;
+    }
+
+    if (hayErrores == false) {
+        mostrarTexto(idComponente, "");
+    }
+
+    return !hayErrores;
+}
+
+esCantidadValido = function (nota, idComponente) {
+    let hayErrores = false;
+    if (isNaN(nota)) {
+        mostrarTexto(idComponente, "Campo obligatorio");
+        hayErrores = true;
+    }
+    if (nota < 0 || nota > 100) {
+        mostrarTexto(idComponente, "El numero debe estar entre 0 y 100");
+        hayErrores = true;
+    }
+
+    if (hayErrores == false) {
+        mostrarTexto(idComponente, "");
+    }
+
+    return !hayErrores;
+}
+
+
+esPrecioValido = function (nota, idComponente) {
+    let hayErrores = false;
+    if (isNaN(nota)) {
+        mostrarTexto(idComponente, "Campo obligatorio");
+        hayErrores = true;
+    }
+
+    if (nota < 0 || nota > 50) {
+        mostrarTexto(idComponente, "El numero debe estar entre 0 y 50");
+        hayErrores = true;
+    }
+
+    if (hayErrores == false) {
+        mostrarTexto(idComponente, "");
+    }
+
+    return !hayErrores;
+}
