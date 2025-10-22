@@ -88,74 +88,93 @@ validarEstructura = function (p_placa) {
 }
 
 function validarProvincia(letra) {
-  // Normalizamos a mayúscula
-  const l = letra.toUpperCase();
+    // Normalizamos a mayúscula
+    const l = letra.toUpperCase();
 
-  if (l === "A") {
-    return "Azuay";
-  } else if (l === "B") {
-    return "Bolívar";
-  } else if (l === "U") {
-    return "Cañar";
-  } else if (l === "C") {
-    return "Carchi";
-  } else if (l === "H") {
-    return "Chimborazo";
-  } else if (l === "X") {
-    return "Cotopaxi";
-  } else if (l === "O") {
-    return "El Oro";
-  } else if (l === "E") {
-    return "Esmeraldas";
-  } else if (l === "W") {
-    return "Galápagos";
-  } else if (l === "G") {
-    return "Guayas";
-  } else if (l === "I") {
-    return "Imbabura";
-  } else if (l === "L") {
-    return "Loja";
-  } else if (l === "R") {
-    return "Los Ríos";
-  } else if (l === "M") {
-    return "Manabí";
-  } else if (l === "S") {
-    return "Morona Santiago";
-  } else if (l === "N") {
-    return "Napo";
-  } else if (l === "Q") {
-    return "Orellana";
-  } else if (l === "Y") {
-    return "Pastaza";
-  } else if (l === "P") {
-    return "Pichincha";
-  } else if (l === "K") {
-    return "Sucumbíos";
-  } else if (l === "T") {
-    return "Tungurahua";
-  } else if (l === "Z") {
-    return "Zamora Chinchipe";
-  } else {
-    return "Provincia incorrecta"; // Letra no válida
-  }
+    if (l === "A") {
+        return "Azuay";
+    } else if (l === "B") {
+        return "Bolívar";
+    } else if (l === "U") {
+        return "Cañar";
+    } else if (l === "C") {
+        return "Carchi";
+    } else if (l === "H") {
+        return "Chimborazo";
+    } else if (l === "X") {
+        return "Cotopaxi";
+    } else if (l === "O") {
+        return "El Oro";
+    } else if (l === "E") {
+        return "Esmeraldas";
+    } else if (l === "W") {
+        return "Galápagos";
+    } else if (l === "G") {
+        return "Guayas";
+    } else if (l === "I") {
+        return "Imbabura";
+    } else if (l === "L") {
+        return "Loja";
+    } else if (l === "R") {
+        return "Los Ríos";
+    } else if (l === "M") {
+        return "Manabí";
+    } else if (l === "S") {
+        return "Morona Santiago";
+    } else if (l === "N") {
+        return "Napo";
+    } else if (l === "Q") {
+        return "Orellana";
+    } else if (l === "Y") {
+        return "Pastaza";
+    } else if (l === "P") {
+        return "Pichincha";
+    } else if (l === "K") {
+        return "Sucumbíos";
+    } else if (l === "T") {
+        return "Tungurahua";
+    } else if (l === "Z") {
+        return "Zamora Chinchipe";
+    } else {
+        return "Provincia incorrecta"; // Letra no válida
+    }
 }
 
 
 function optenerTipoVehiculo(letra) {
-  // Normalizamos a mayúscula
-  const l = letra.toUpperCase();
+    // Normalizamos a mayúscula
+    const l = letra.toUpperCase();
 
-  if (l === "A" || l === "Z") {
-    return "Vehiculos comerciales";
-  } else if (l === "E") {
-    return "Vehiculos gubernamentales";
-  } else if (l === "X") {
-    return "Vehiculos de uso oficial";
-  } else if (l === "S") {
-    return "Vehiculos de gobierno provincial";
-  } else if (l === "M") {
-    return "Vehiculos municipal";
-  } else {
-    return "Vehiculos particular(privado)"; 
-  }
+    if (l === "A" || l === "Z") {
+        return "Vehiculos comerciales";
+    } else if (l === "E") {
+        return "Vehiculos gubernamentales";
+    } else if (l === "X") {
+        return "Vehiculos de uso oficial";
+    } else if (l === "S") {
+        return "Vehiculos de gobierno provincial";
+    } else if (l === "M") {
+        return "Vehiculos municipal";
+    } else {
+        return "Vehiculos particular(privado)";
+    }
+}
+
+obtenerDiaPicoYPlaca = function (letra) {
+    // Normalizamos a mayúscula
+    const l = letra.toUpperCase();
+
+    if (l === "1" || l === "2") {
+        return "Lunes";
+    } else if (l === "3" || l === "4") {
+        return "Martes";
+    } else if (l === "5" || l === "6") {
+        return "Miercoles";
+    } else if (l === "7" || l === "8") {
+        return "Jueves";
+    } else if (l === "9" || l === "0") {
+        return "Vienes";
+    } else {
+        return "Circulación Libre";
+    }
 }

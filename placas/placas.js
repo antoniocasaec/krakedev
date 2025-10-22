@@ -3,9 +3,11 @@ validarPlaca = function () {
     let v_placa = recuperarTexto("txtPlaca");
     let primeraLetra = v_placa.charAt(0);
     let segundaLetra = v_placa.charAt(1);
+    let ultimaaLetra = v_placa.charAt(v_placa.length-1);
     let erroresEstructura;
     let v_provincia;
-    let tipo;
+    let v_tipo;
+    let v_dia;
 
     erroresEstructura = validarEstructura(v_placa);
 
@@ -16,9 +18,11 @@ validarPlaca = function () {
         v_provincia = validarProvincia(primeraLetra);
         mostrarTexto("lblProvincia", v_provincia);
 
-        tipo = optenerTipoVehiculo(segundaLetra);
-        mostrarTexto("lblTipo", tipo);
+        v_tipo = optenerTipoVehiculo(segundaLetra);
+        mostrarTexto("lblTipo", v_tipo);
 
+        v_dia = obtenerDiaPicoYPlaca(ultimaaLetra);
+        mostrarTexto("lblDiaPico", v_dia);
 
     } else {
         mostrarTexto("lblPlaca", "ESTRUCTURA INCORRECTA");
@@ -39,6 +43,7 @@ limpiar = function () {
     mostrarTexto("lblPlaca", "");
     mostrarTexto("lblErrores", "N/A");
     mostrarTexto("lblProvincia", "");
+    mostrarTexto("lblDiaPico", "");
 
 
 }
