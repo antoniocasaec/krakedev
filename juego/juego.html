@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="juego.css" />
+    <script src="utilitarios.js"></script>
+    <script src="serviciosJuego.js"></script>
+    <script src="juego.js"></script>
+</head>
+
+<body>
+    <div class="principal">
+
+        <div class="contenido">
+            <div class="titulo">
+                JUEGO DE PIEDRA PAPEL O TIJERA
+            </div>
+
+            <div class="botones">
+                <div class="imagen">
+                    <img src="./imagenes/piedra.png" width="50%" onclick="jugar('Piedra');" />
+                </div>
+                <div class="imagen">
+                    <img src="./imagenes/papel.png" width="50%" onclick="jugar('Papel');" />
+                </div>
+                <div class="imagen">
+                    <img src="./imagenes/tijera.png" width="50%" onclick="jugar('Tijera');" />
+                </div>
+            </div>
+
+            <div class="ingresoDatos">
+                <div class="tituloCampo">
+                    INGRESE LA PLACA
+                </div>
+                <div>
+                    <input type="text" class="cajaTexto" id="txtPlaca" />
+                    <div class="error" id="lbltxtPlacaCorrecta"></div>
+                    <div class="error" id="lbltxtPlacaErrores"></div>
+                </div>
+            </div>
+
+            <div class="botones">
+                <div class="contenedorBoton">
+                    <input type="button" value="obtenerAleatorio" class="estiloBoton" onclick="obtenerAleatorio();" />&nbsp;
+                    <input type="button" value="LIMPIAR" class="estiloBoton" onclick="limpiar();" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="areaResultado">
+
+            <div class="resultado">
+                <div>
+                    SELECCION:
+                </div>
+                <div id="lblSeleccion">
+                    SIN VALIDACION
+                </div>
+            </div>
+
+            <div class="resultado">
+                <div>
+                    Errores:
+                </div>
+                <div id="lblErrores">
+                    N/A
+                </div>
+            </div>
+
+
+          
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
