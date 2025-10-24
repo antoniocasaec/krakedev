@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="placas.css" />
+    <script src="utilitarios.js"></script>
+    <script src="utilitariosCadenas.js"></script>
+    <script src="serviciosPlacas.js"></script>
+    <script src="placas.js"></script>
+</head>
+
+<body>
+    <div class="principal">
+        <div class="logoEscuela">
+            <img src="./imagenes/logoKrakeDev.png" width="80%" />
+        </div>
+
+
+        <div class="contenido">
+            <div class="titulo">
+                VALIDADOR DE PLACAS
+            </div>
+            <div class="titulo">
+            </div>
+
+            <div class="ingresoDatos">
+                <div class="tituloCampo">
+                    INGRESE LA PLACA
+                </div>
+                <div>
+                    <input type="text" class="cajaTexto" id="txtPlaca" />
+                    <div class="error" id="lbltxtPlacaCorrecta"></div>
+                    <div class="error" id="lbltxtPlacaErrores"></div>
+                </div>
+            </div>
+
+            <div class="botones">
+                <div class="contenedorBoton">
+                    <input type="button" value="VALIDAR" class="estiloBoton" onclick="validarPlaca();" />&nbsp;
+                    <input type="button" value="LIMPIAR" class="estiloBoton" onclick="limpiar();" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="areaResultado">
+
+            <div class="resultado">
+                <div>
+                    Validación:
+                </div>
+                <div id="lblPlaca">
+                    SIN VALIDACION
+                </div>
+            </div>
+
+            <div class="resultado">
+                <div>
+                    Errores:
+                </div>
+                <div id="lblErrores">
+                    N/A
+                </div>
+            </div>
+
+            <div class="resultado">
+                <div>
+                    Provincia:
+                </div>
+                <div id="lblProvincia">
+                    N/A
+                </div>
+            </div>
+
+            <div class="resultado">
+                <div>
+                    Tipo:
+                </div>
+                <div id="lblTipo">
+                    N/A
+                </div>
+            </div>
+
+            <div class="resultado">
+                <div>
+                    Dia Pico y Placa:
+                </div>
+                <div id="lblDiaPico">
+                    N/A
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

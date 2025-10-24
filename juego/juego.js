@@ -1,52 +1,71 @@
+//variables para recuperar los valores de las cajas de texto
+let puntosUsuario = 0;
+let puntosComputador = 0;
+let partida = 0;
+
 jugar = function (p_seleccionado) {
     //variables para recuperar los valores de las cajas de texto
+    //mostrarTexto("lblSeleccion", p_seleccionado);
+    let v_seleccionado = p_seleccionado;
     let v_generarElemento;
-    let primeraLetra = v_placa.charAt(0);
-    let segundaLetra = v_placa.charAt(1);
-    let ultimaaLetra = v_placa.charAt(v_placa.length-1);
-    let erroresEstructura;
-    let v_provincia;
-    let v_tipo;
-    let v_dia;
+    let v_generarRuta;
+    let v_determinarGanador;
 
-    v_generarElemento = generarElemento();)
-            console.log("0 v_generarElemento");
 
-    if (erroresEstructura == null) {
-        mostrarTexto("lblPlaca", "ESTRUCTURA VALIDA");
-        mostrarTexto("lblErrores", "N/A");
+    if (puntosUsuario == 5 || puntosComputador == 5) {
+        puntosUsuario = 0;
+        puntosComputador = 0;
+    }
 
-        v_provincia = validarProvincia(primeraLetra);
-        mostrarTexto("lblProvincia", v_provincia);
+    partida = partida + 1;
+    mostrarTexto("lblPartida", partida);
 
-        v_tipo = optenerTipoVehiculo(segundaLetra);
-        mostrarTexto("lblTipo", v_tipo);
+    v_generarElemento = generarElemento();
+    console.log("v_generarElemento: " + v_generarElemento);
 
-        v_dia = obtenerDiaPicoYPlaca(ultimaaLetra);
-        mostrarTexto("lblDiaPico", v_dia);
+    v_generarRuta = generarRuta(v_generarElemento);
+    console.log("generarRuta: " + generarRuta);
 
-    } else {
-        mostrarTexto("lblPlaca", "ESTRUCTURA INCORRECTA");
-        mostrarTexto("lblErrores", erroresEstructura);
-        mostrarTexto("lblProvincia", "");
+    mostrarImagen("lblimgNoImagen", v_generarRuta);
+
+    v_determinarGanador = determinaGanador(v_seleccionado, v_generarElemento);
+    console.log("v_determinarGanador: " + v_determinarGanador);
+
+    if (v_determinarGanador == 0) {
+        console.log("0 empate");
+        mostrarTexto("lblquiengano", "0 empate");
+    } else if (v_determinarGanador == 1) {
+        console.log("1 Ganaste la partida!!!");
+        mostrarTexto("lblquiengano", "1 Ganaste la partida!!!");
+        puntosUsuario = v_determinarGanador + 1;
+        mostrarTexto("lblUsuario", puntosUsuario);
+    } else if (v_determinarGanador == 2) {
+        resultado = "2";
+        console.log("2 Perdiste la partida!!!");
+        mostrarTexto("lblquiengano", "2 Perdiste la partida!!!");
+        puntosComputador = puntosComputador + 1;
+        mostrarTexto("lblComputador", puntosComputador);
+    }
+
+    if (puntosUsuario == 5) {
+        mostrarTexto("lblquiengano", "HAS GANADO EL JUEGO");
+    }
+
+    if (puntosComputador == 5) {
+        mostrarTexto("lblquiengano", "EL COMPUTADOR TE HA GANADO");
+    }
+
+    limpiar = function () {
+        // mostrarTextoEnCaja("txtPlaca", "");
+
+        //mostrarTextoEnCaja("txtPorcentajeDescuento", "");
+        mostrarTexto("lblUsuario", "0");
+        mostrarTexto("lblComputador", "0");
+        mostrarTexto("lblPartida", "0");
+        mostrarTexto("lblquiengano", "");
+        mostrarImagen("lblimgNoImagen", "./imagenes/notas.png");
+
+        //mostrarImagen(idComponente, rutaImagen);
     }
 }
-
-limpiar = function () {
-    /*
-        Dejar todas las cajas de texto con el valor cadena vacía, 0 ó 0.0 según el tipo de dato
-        Dejar todos los textos de los montos con el valor 0.0
-        Si funciona, hacer un commit
-     */
-    mostrarTextoEnCaja("txtPlaca", "");
-
-    //mostrarTextoEnCaja("txtPorcentajeDescuento", "0");
-    mostrarTexto("lblPlaca", "");
-    mostrarTexto("lblErrores", "N/A");
-    mostrarTexto("lblProvincia", "");
-    mostrarTexto("lblDiaPico", "");
-
-
-}
-
 /* SI TODO FUNCIONA, HACER UN PUSH */
