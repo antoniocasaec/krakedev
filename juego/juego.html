@@ -13,36 +13,44 @@
 
         <div class="contenido">
             <div class="titulo">
-                JUEGO DE PIEDRA PAPEL O TIJERA
+                JUEGA PIEDRA PAPEL O TIJERA
             </div>
 
-            <div class="botones">
+
+
+
+            <div class="titulo">
+                Selecciona una imagen
+
                 <div class="imagen">
-                    <img src="./imagenes/piedra.png" width="50%" onclick="jugar('Piedra');" />
+                    <img src="./imagenes/piedra.png" width="40%" onclick="jugar('Piedra');" />
                 </div>
                 <div class="imagen">
-                    <img src="./imagenes/papel.png" width="50%" onclick="jugar('Papel');" />
+                    <img src="./imagenes/papel.png" width="40%" onclick="jugar('Papel');" />
                 </div>
                 <div class="imagen">
-                    <img src="./imagenes/tijera.png" width="50%" onclick="jugar('Tijera');" />
+                    <img src="./imagenes/tijera.png" width="40%" onclick="jugar('Tijera');" />
+                </div>
+            </div>
+            <div class="titulo">
+                Selección del Computador
+                <div class="imagen">
+                    <img src="./imagenes/notas.png" width="15%" id="lblimgNoImagen" />
                 </div>
             </div>
 
-            <div class="ingresoDatos">
+            <div class="texto">
                 <div class="tituloCampo">
-                    INGRESE LA PLACA
+                    QUIEN GANO LA PARTIDA
                 </div>
                 <div>
-                    <input type="text" class="cajaTexto" id="txtPlaca" />
-                    <div class="error" id="lbltxtPlacaCorrecta"></div>
-                    <div class="error" id="lbltxtPlacaErrores"></div>
+                    <div class="error" id="lblquiengano"></div>
                 </div>
             </div>
 
             <div class="botones">
                 <div class="contenedorBoton">
-                    <input type="button" value="obtenerAleatorio" class="estiloBoton" onclick="obtenerAleatorio();" />&nbsp;
-                    <input type="button" value="LIMPIAR" class="estiloBoton" onclick="limpiar();" />
+                    <input type="button" value="NUEVA PARTIDA" class="estiloBoton" onclick="limpiar();" />
                 </div>
             </div>
 
@@ -52,29 +60,34 @@
 
             <div class="resultado">
                 <div>
-                    SELECCION:
+                    Usuario:
                 </div>
-                <div id="lblSeleccion">
-                    SIN VALIDACION
+                <div id="lblUsuario">
+                    0
                 </div>
             </div>
 
             <div class="resultado">
                 <div>
-                    Errores:
+                    Computador:
                 </div>
-                <div id="lblErrores">
-                    N/A
+                <div id="lblComputador">
+                    0
                 </div>
             </div>
 
-
-          
+            <div class="resultado">
+                <div>
+                    Partida:
+                </div>
+                <div id="lblPartida">
+                    0
+                </div>
+            </div>
 
         </div>
 
     </div>
-
 
 </body>
 
