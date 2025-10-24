@@ -54,3 +54,51 @@ function guardarPalabra() {
     // Mostrar en consola
     console.log("Palabra ingresada:", palabraSecreta);
 }
+
+
+
+mostrarLetra = function (letra, posicion) {
+    // Validar que la posición esté entre 0 y 4
+    if (posicion < 0 || posicion > 4) {
+        alert("La posición debe estar entre 0 y 4");
+        return;
+    }
+
+    // Usar un bucle for para recorrer los divs
+    for (let i = 0; i < 5; i++) {
+        let divActual = document.getElementById("div" + i);
+
+        if (i === posicion) {
+            divActual.innerText = letra; // Mostrar la letra en el div correspondiente
+        } else {
+            divActual.innerText = ""; // Limpiar los demás divs (opcional)
+        }
+    }
+}
+
+
+
+let palabraSecreta1 = "HOLAQ"; // puedes cambiarla o asignarla desde guardarPalabra()
+
+/*
+validar = function (letra) {
+    // Variable local para contar cuántas letras se encontraron
+    let letrasEncontradas = 0;
+
+    // Recorrer cada carácter de la palabra secreta
+    for (let i = 0; i < palabraSecreta.length; i++) {
+        // Obtener el carácter actual
+        let caracter = palabraSecreta.charAt(i);
+
+        // Verificar si coincide con la letra ingresada
+        if (caracter === letra) {
+            // Llama a mostrarLetra pasando la letra y la posición
+            mostrarLetra(letra, i);
+
+            // Incrementar el contador
+            letrasEncontradas++;
+        }
+    }
+}
+
+*/
