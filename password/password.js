@@ -1,16 +1,19 @@
 password = function () {
     let mensaje;
     let resultado;
+
     mensaje = recuperarTexto("txtCadena");
     resultado = validarPassword(mensaje);
 
     if (resultado.length === 0) {
+    
         mostrarTexto("txtFinal", "OK: " + resultado);
     } else {
+    
         mostrarTexto("txtFinal", "Errores: " + resultado);
     }
 }
-
+   
 validarPassword = function (password) {
     let errores = "";
 
