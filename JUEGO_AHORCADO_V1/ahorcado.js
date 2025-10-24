@@ -1,104 +1,106 @@
-//No se olvide de respirar, mantenga la calma y demuestre lo que sabe
-esMayuscula = function (p_letra) {
-    let v_letra = p_letra;
-    let v_caracteresAscii = v_letra.charCodeAt(0);
-    let v_autorizado;
+let palabraSecreta;
+let intentos = 0;
+let coincidencias = 0;
+let errores = 0;
 
-    if (v_caracteresAscii >= 65 && v_caracteresAscii <= 90) {
-        v_autorizado = true;
+esMayuscula = function (i) {
+    let esMayuscula = i.charCodeAt(0);
+    if (esMayuscula >= 65 && esMayuscula <= 90) {
+        return true;
     } else {
-        v_autorizado = false;
+        return false;
     }
-
-    return v_autorizado;
 }
 
-
-
-// Variable global
-let palabraSecreta = "";
-
-// Función invocada desde el botón GUARDAR
-function guardarPalabra() {
-    // Obtener la palabra desde la caja de texto
-    let palabra = document.getElementById("txtSecreta").value;
-
-    // Validar que tenga exactamente 5 caracteres
-    if (palabra.length !== 5) {
-        alert("Debe ingresar una palabra de 5 letras mayúsculas.");
-        return;
-    }
-
-    // Validar que todos los caracteres sean letras mayúsculas
-    let esValida = true;
-
-    for (let i = 0; i < palabra.length; i++) {
-        let caracter = palabra.charAt(i);
-
-        // Verifica si cada carácter está entre 'A' y 'Z'
-        if (caracter < 'A' || caracter > 'Z') {
-            esValida = false;
-            break;
+guardarPalabra = function () {
+    let caracter;
+    let existeError = false;
+    let todasMayusculas = true;
+    let palabraIngresada = recuperarTexto("txtSecreta");
+    if (palabraIngresada.length == 5) {
+        existeError = false;
+        for (let posicion = 0; posicion < palabraIngresada.length; posicion++) {
+            caracter = palabraIngresada.charAt(posicion);
+            let sonMayusculas = caracter.charCodeAt(0);
+            if (sonMayusculas < 65 || sonMayusculas > 90) {
+                todasMayusculas = false;
+            }
         }
+        if (todasMayusculas == true) {
+            console.log(palabraIngresada);
+            palabraSecreta = palabraIngresada;
+        } else {
+            alert("Debe ingresar una palabra completamente en mayusculas");
+            existeError = true;
+        }
+    } else {
+        alert("Debe ingresar una palabra de 5 letras");
+        existeError = true
     }
-
-    // Si no es válida, mostrar mensaje
-    if (!esValida) {
-        alert("Debe ingresar una palabra de 5 letras mayúsculas.");
-        return;
-    }
-
-    // Si pasa todas las validaciones, guardar en la variable global
-    palabraSecreta = palabra;
-
-    // Mostrar en consola
-    console.log("Palabra ingresada:", palabraSecreta);
 }
-
-
 
 mostrarLetra = function (letra, posicion) {
-    // Validar que la posición esté entre 0 y 4
-    if (posicion < 0 || posicion > 4) {
-        alert("La posición debe estar entre 0 y 4");
-        return;
-    }
-
-    // Usar un bucle for para recorrer los divs
-    for (let i = 0; i < 5; i++) {
-        let divActual = document.getElementById("div" + i);
-
-        if (i === posicion) {
-            divActual.innerText = letra; // Mostrar la letra en el div correspondiente
-        } else {
-            divActual.innerText = ""; // Limpiar los demás divs (opcional)
-        }
-    }
+    mostrarTexto(`div${posicion}`, letra);
 }
 
-
-
-let palabraSecreta1 = "HOLAQ"; // puedes cambiarla o asignarla desde guardarPalabra()
-
-/*
 validar = function (letra) {
-    // Variable local para contar cuántas letras se encontraron
     let letrasEncontradas = 0;
-
-    // Recorrer cada carácter de la palabra secreta
-    for (let i = 0; i < palabraSecreta.length; i++) {
-        // Obtener el carácter actual
-        let caracter = palabraSecreta.charAt(i);
-
-        // Verificar si coincide con la letra ingresada
-        if (caracter === letra) {
-            // Llama a mostrarLetra pasando la letra y la posición
-            mostrarLetra(letra, i);
-
-            // Incrementar el contador
+    for (let posicion = 0; posicion < palabraSecreta.length; posicion++) {
+        if (palabraSecreta.charAt(posicion) == letra) {
+            mostrarLetra(letra, posicion)
             letrasEncontradas++;
         }
     }
+    coincidencias += letrasEncontradas;
+    if (letrasEncontradas==0) {
+        alert("LA LETRA NO ES PARTE DE LA PALABRA");
+        errores++;
+        mostrarAhorcado();
+    }
 }
 
-*/
+ingresarLetra = function () {
+    intentos++;
+    let letraIngresada = recuperarTexto("txtLetra");
+    if (letraIngresada.length == 1 && esMayuscula(letraIngresada)) {
+        validar(letraIngresada);
+        if (coincidencias == 5) {
+            mostrarImagen("ahorcadoImagen", "ganador.gif");
+        }
+        if (intentos == 10) {
+            mostrarImagen("ahorcadoImagen", "gameOver.gif");
+        }
+    } else {
+        alert("SOLO SE ACEPTAN MAYUSCULAS");
+    }
+}
+
+mostrarAhorcado=function(){
+    if(errores==1){
+        mostrarImagen("ahorcadoImagen","Ahorcado_01.png");
+    }
+    if(errores==2){
+        mostrarImagen("ahorcadoImagen","Ahorcado_02.png");
+    }
+    if(errores==3){
+        mostrarImagen("ahorcadoImagen","Ahorcado_03.png");
+    }
+    if(errores==4){
+        mostrarImagen("ahorcadoImagen","Ahorcado_04.png");
+    }
+    if(errores==5){
+        mostrarImagen("ahorcadoImagen","Ahorcado_05.png");
+    }
+    if(errores==6){
+        mostrarImagen("ahorcadoImagen","Ahorcado_06.png");
+    }
+    if(errores==7){
+        mostrarImagen("ahorcadoImagen","Ahorcado_07.png");
+    }
+    if(errores==8){
+        mostrarImagen("ahorcadoImagen","Ahorcado_08.png");
+    }
+    if(errores==9){
+        mostrarImagen("ahorcadoImagen","Ahorcado_09.png");
+    }
+}
